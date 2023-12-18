@@ -21,7 +21,7 @@ Develop the backend for the meme application to handle user registration, meme c
 
 2. **Meme Data Model**:
 
-   - Create a Meme schema using Mongoose for storing meme data.
+   - Create a Meme schema using SQL for storing meme data.
    - The schema should include fields for image URLs, text captions, and user references (for the meme creator).
    - All fields should be required.
    - Set timestamps for the schema.
@@ -52,7 +52,7 @@ Develop the backend for the meme application to handle user registration, meme c
 
 7. **User Roles and Permissions**:
 
-   - Differentiate between regular users and registered meme creators.
+   - Differentiate between regular users(view only) and registered meme creators.
 
 ## Submission
 
