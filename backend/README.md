@@ -6,7 +6,7 @@
 2. **Create a New Branch**: Create a new branch with the name `firstname-lastname` to work on your project.
 3. **Node.js Project**: Set up a new Node.js project for the backend.
 4. **Install Dependencies**: Install the required dependencies.
-5. **Create database**: Create a new database for the project using MongoDB Atlas.
+5. **Create database**: Create a new database for the project using SQL.
 
 ## Instructions
 
