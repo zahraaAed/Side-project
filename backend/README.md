@@ -2,7 +2,7 @@
 
 ## Setting up the Backend
 
-1. **Clone Repository**: Begin by cloning the backend repository to your local machine.
+1. **Fork Repository**: Begin by forking the backend repository to your local machine.
 2. **Create a New Branch**: Create a new branch with the name `firstname-lastname` to work on your project.
 3. **Node.js Project**: Set up a new Node.js project for the backend.
 4. **Install Dependencies**: Install the required dependencies.
