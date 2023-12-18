@@ -2,13 +2,13 @@
 
 ## Starting the Project
 
-1. **Clone Repository**: Begin by cloning this repository to your local machine.
+1. **Fork Repository**: Begin by forking this repository to your local machine.
 2. **Create a New Branch**: Create a new branch with the name `firstname-lastname` to work on your project.
 3. **React Project**: Create a new React project.
 
 ## Instructions
 
-Design a web application using **FIGMA** and build it with React and CSS. This application should allow registered users to create custom memes by overlaying text on images, and normal users to display all the created memes. The interface should be user-friendly.
+Build a web application with React and CSS (You can use any UI library). This application should allow registered users to create custom memes by overlaying text on images, and normal users to display all the created memes. The interface should be user-friendly and appealing for the user.
 
 ## Requirements
 
@@ -37,22 +37,22 @@ Design a web application using **FIGMA** and build it with React and CSS. This a
 
 ## Bonus
 
-1. **Download Feature**:
-
-   - Allow users to download memes.
-
-2. **Search Feature**:
+1. **Search Feature**:
 
    - Implement a meme search functionality by text.
 
-3. **Sorting Feature**:
+2. **Sorting Feature**:
    - Allow users to sort memes by date created or alphabetically by text.
 
+3. **Download Feature**:
+
+   - Allow users to download memes.
+  
+     
 ## Submission
 
 - After implementing the project, stage your changes, commit them, and push to your branch.
-- To submit the figma file, create a text file name it FIGMA and add the link for you Figma file(Make sure to access anyone with the link).
 
 ## Notes
 
-- You are free to use any image hosting service for storing meme images.
+- You are free to use any image hosting service for storing meme images. 
