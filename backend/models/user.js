@@ -15,7 +15,7 @@ const User= sequelize.define("user",{
     role: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue:'user'  
+      
     },
     password: { 
         type: DataTypes.STRING,
