@@ -1,0 +1,67 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+ 
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  label {
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  
+  input {
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  button {
+    background-color:rgb(151, 12, 105);
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+   
+  }
+  .buttons{
+    display: flex;
+    flex-direction: row;
+    gap: 60px;
+   
+  }
+  button:hover {
+    background-color:rgb(151, 12, 105);
+
+  }
+.memes-edit{
+    max-width: 700px;
+    display: flex;
+    flex-direction: row;
+    gap: 120px;
+    margin-left: 400px;
+ justify-content: center;
+ align-items: center;
+}
+.meme-description{
+    display: flex;
+    flex-direction: column;
+}
+.memes-change{
+    display: flex;
+    flex-direction: row;
+    gap: 120px;
+}
+.link-button {
+    background: white;
+    font: inherit;
+    cursor: pointer;
+    color: rgb(151, 12, 105);
+    text-decoration: none;
+  }

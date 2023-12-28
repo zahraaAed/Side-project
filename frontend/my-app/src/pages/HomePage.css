@@ -1,0 +1,30 @@
+body{
+    background-color: rgb(230, 240, 184);
+    margin: 50px;
+}
+
+
+.meme-container{
+    display: flex;
+    flex-direction: row;
+    gap: 120px;
+justify-content: center;
+padding-top: 100px;
+}
+.body-meme{
+   max-width: 480px;
+   display: flex;
+   flex-direction: row;
+   gap: 120px;
+justify-content: center;
+}
+h1{
+ text-align: center;
+ font-size: 70px;
+ color: #4caf50;
+}
+h3{
+    text-align: center;
+    font-size: 40px;
+    color: #83c986;
+   }
