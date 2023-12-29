@@ -105,7 +105,7 @@ const Add = () => {
                   alt="meme Image"
                 />
 
-                <p>text_caption: {meme.text_caption}</p>
+                <p>{meme.text_caption}</p>
 <div className="buttons">
                <button className="link-button"><Link to={`/edit/${meme.id}`}>Edit</Link></button>
 

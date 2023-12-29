@@ -1,53 +1,70 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "./Registration.css";
 
 const RegistrationForm = () => {
   const [formData, setFormData] = useState({
-    name: "",
+    username: "",
     email: "",
     password: "",
     role: "",
- 
+    
   });
-
-  const handleChange = (e) => {
-    const { name, value, type } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-     
-    }));
-  };
+  const [showAlert, setShowAlert] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     try {
-      const response = await axios.post("localhost:4000/api/userregister", formData);
-      const { token } = response.data;
-
-      // Store the JWT token securely (e.g., in localStorage)
-      localStorage.setItem("token", token);
-
-      // Redirect or perform any other actions as needed
+      const response = await axios.post(
+        "http://localhost:4000/api/user/addUser",
+        formData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+    
+  
+      setFormData(response.data);
+      if (response.data.success) {
+    
+        setShowAlert(true);
+    
+        setTimeout(() => {
+          navigate("/");
+        }, 2000); 
+      }
+      if (formData.role === "admin") {
+        navigate("/admin");
+      } else {
+        navigate("/home");
+      }
     } catch (error) {
       console.error("Error registering user:", error);
     }
   };
-
+  const handleLoginClick = () => {
+    navigate("/login");
+  };
+ 
   return (
-   
-     <form className="registration-form" onSubmit={handleSubmit}>
+    <form className="registration-form" onSubmit={handleSubmit}>
       <h2 className="form-title">Create an account</h2>
 
       <div className="form-group">
-        <label htmlFor="name">Your Name</label>
+        <label htmlFor="username">Your Name</label>
         <input
           type="text"
-          id="name"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
+          id="username"
+          name="username"
+          value={formData.username}
+          onChange={(e) =>
+            setFormData({ ...formData, [e.target.name]: e.target.value })
+          }
         />
       </div>
 
@@ -58,7 +75,9 @@ const RegistrationForm = () => {
           id="email"
           name="email"
           value={formData.email}
-          onChange={handleChange}
+          onChange={(e) =>
+            setFormData({ ...formData, [e.target.name]: e.target.value })
+          }
         />
       </div>
 
@@ -69,29 +88,53 @@ const RegistrationForm = () => {
           id="password"
           name="password"
           value={formData.password}
-          onChange={handleChange}
+          onChange={(e) =>
+            setFormData({ ...formData, [e.target.name]: e.target.value })
+          }
         />
       </div>
 
       <div className="form-group">
-        <label htmlFor="role">Role</label>
-        <input
-          type="text"
-          id="role"
-          name="role"
-          value={formData.role}
-          onChange={handleChange}
-        />
+        <label>
+          <input
+            type="checkbox"
+            name="role"
+            value="admin"
+            checked={formData.role === "admin"}
+            onChange={(e) =>
+              setFormData({ ...formData, role: e.target.checked ? "admin" : "user" })
+            }
+          />{" "}
+          Admin
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            name="role"
+            value="user"
+            checked={formData.role === "user"}
+            onChange={(e) =>
+              setFormData({ ...formData, role: e.target.checked ? "user" : "admin" })
+            }
+          />{" "}
+          User
+        </label>
       </div>
-
- 
 
       <button type="submit" className="submit-btn">
         Register
       </button>
 
+      {showAlert && (
+        <div className="alert" >
+          Registered successfully! Redirecting to login page...
+        </div>
+      )}
       <p className="login-link">
-        Have already an account? <a href="#!">Login here</a>
+        Have already an account?{" "}
+        <span className="login" onClick={handleLoginClick} >
+          Login here
+        </span>
       </p>
     </form>
   );
