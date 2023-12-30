@@ -3,7 +3,8 @@ import HomePage from "./pages/HomePage.js";
 import AdminDashboard from "./pages/AdminDashboard.js";
 import Handeledit from "./components/HandelEdit.js";
 import RegistrationForm from "./pages/Registration";
-import SigninForm from "./pages/loginPage.js"
+import SigninForm from "./pages/loginPage.js";
+import MemeDetail from "./components/memeDetail.js";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
           <Route path="/edit/:MemeId" element={<Handeledit />} />
           <Route path="/" element={<RegistrationForm />} />
           <Route path="/login" element={<SigninForm />} />
+          <Route path="/memeDetail/:MemeId" element={<MemeDetail/>} />
         </Routes>
       </BrowserRouter>
     </div>
