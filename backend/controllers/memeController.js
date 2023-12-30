@@ -16,20 +16,35 @@ export const getAllMemes= async (req,res) =>{
     }
         
 }
-
-export const getMemeById = async(req,res) =>{
-    const {MemeId} = req.params;
-
-    try{
-        const Meme = await Meme.findByPk(MemeId)
-        if(!Meme){
-            return res.status(404).json({ message: "Meme not found" });
-        }
-        res.status(200).json({Meme:Meme});
-    }catch(err){
-        console.log(err);
+export const getMemeById = async (req, res) => {
+    const { MemeId } = req.params;
+  console.log("get front of id")
+    try {
+      const OneMeme = await Meme.findByPk(MemeId, {
+        include: [
+          {
+            model: User,
+            attributes: ['username'],
+          },
+        ],
+      });
+      console.log("get front of include")
+      if (!OneMeme) {
+        return res.status(404).json({ message: "Meme not found" });
+      }
+  
+      const formattedMeme = OneMeme.toJSON();
+      if (OneMeme.User) {
+        formattedMeme.creatorName = OneMeme.User.username;
+      }
+     
+      res.status(200).json({ Meme: formattedMeme });
+       console.log("fetch data")
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({ error: err.message });
     }
-}
+  };
 
 
 export const deleteMeme = async (req,res) =>{
@@ -51,40 +66,40 @@ export const deleteMeme = async (req,res) =>{
 //add
 
 
-// export const addMeme = async (req, res) => {
-//     const image = req.file ? req.file.path : null;
-   
-//     const { text_caption } = req.body; 
-//     try {
-    
-//         const createdMeme = await Meme.create({ text_caption, img: image });
-//         console.log(createdMeme);
-//         res.status(200).json({ message: 'Meme created successfully' });
-//     } catch (error) {
-//         console.log(error);
-//         res.status(500).json({ message: error.message });
-//     }
-// };
-
-
 export const addMeme = async (req, res) => {
     const image = req.file ? req.file.path : null;
-    const { text_caption, userId } = req.body; 
    
+    const { text_caption } = req.body; 
     try {
-      let user = await User.findByPk(userId);
-      if (!user) {
-        return res.status(404).json({ message: "User not found" });
-      }
-   
-      const createdMeme = await user.createMeme({ text_caption, img: image });
-      console.log(createdMeme);
-      res.status(200).json({ message: 'Meme created successfully' });
+    
+        const createdMeme = await Meme.create({ text_caption, img: image });
+        console.log(createdMeme);
+        res.status(200).json({ message: 'Meme created successfully' });
     } catch (error) {
-      console.log(error);
-      res.status(500).json({ message: error.message });
+        console.log(error);
+        res.status(500).json({ message: error.message });
     }
-   };
+};
+
+
+
+// export const addMeme = async (req, res) => {
+//     console.log("Received POST request at /api/meme/addMeme");
+//     const image = req.file ? req.file.path : null;
+//     // console.log("error in img")
+//     const { caption} = req.body; 
+//     console.log("error in caption")
+//     try { 
+//       const createdMeme = await Meme.create({caption, img: image });
+//       console.log("got meme")
+//       console.log(createdMeme);
+//       console.log("got meme")
+//       res.status(200).json({ message: 'Meme created successfully' });
+//     } catch (error) {
+//       console.log(error);
+//       res.status(500).json({ message: error.message });
+//     }
+//    };
    
 // Update
 export const updateMeme = async (req, res) => {
@@ -102,6 +117,3 @@ export const updateMeme = async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 };
-//get meme for user
-
-  

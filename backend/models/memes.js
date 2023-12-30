@@ -5,7 +5,7 @@ import User from "../models/user.js";
 const Meme = sequelize.define("meme", {
     text_caption: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull:true,
         
     },
     img: {
@@ -15,8 +15,6 @@ const Meme = sequelize.define("meme", {
 
 });
 
-// User.hasMany(Meme);
-// Meme.belongsTo(User);
 User.hasMany(Meme, { foreignKey: 'userId' });
 Meme.belongsTo(User, { foreignKey: 'userId' });
 
