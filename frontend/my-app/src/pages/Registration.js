@@ -93,9 +93,10 @@ const RegistrationForm = () => {
           }
         />
       </div>
-
+      <div className="roles-container">
+      <label htmlFor="role">Role</label>
       <div className="form-group">
-        <label>
+        <label >
           <input
             type="checkbox"
             name="role"
@@ -120,7 +121,7 @@ const RegistrationForm = () => {
           User
         </label>
       </div>
-
+</div>
       <button type="submit" className="submit-btn">
         Register
       </button>

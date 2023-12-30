@@ -96,7 +96,7 @@ const Add = () => {
               <button type="submit">Submit</button>
             </form>
           </div>{" "}
-          <h2>Edit memes</h2>
+       
           <div className="memes-edit">
             {memes.map((meme) => (
               <div key={meme.id}>

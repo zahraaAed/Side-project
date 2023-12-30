@@ -61,3 +61,12 @@
   .alert {
     color: #4caf50;
   }
+  .form-group{
+    display: flex;
+    flex-direction: row;
+  }
+  .roles-container{
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+  }
