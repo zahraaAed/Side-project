@@ -38,11 +38,11 @@ const RegistrationForm = () => {
           navigate("/");
         }, 2000); 
       }
-      if (formData.role === "admin") {
-        navigate("/admin");
-      } else {
-        navigate("/home");
-      }
+      // if (formData.role === "admin") {
+      //   navigate("/admin");
+      // } else {
+      //   navigate("/home");
+      // }
     } catch (error) {
       console.error("Error registering user:", error);
     }
@@ -122,7 +122,7 @@ const RegistrationForm = () => {
         </label>
       </div>
 </div>
-      <button type="submit" className="submit-btn">
+      <button type="submit" className="submit-btn" onClick={handleLoginClick}>
         Register
       </button>
 

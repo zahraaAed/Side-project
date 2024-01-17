@@ -2,7 +2,9 @@ import { useState, useEffect } from "react";
 import axios from "axios"
 import "./AdminDashboard.css";
 import { Link } from "react-router-dom";
+import Handeledit from "../components/HandelEdit";
 const Add = () => {
+
   const [meme, setmeme] = useState([]);
   const [text_caption, setText_caption] = useState("");
   const [img, setImg] = useState([]);
@@ -28,9 +30,11 @@ const Add = () => {
           },
         }
       );
-   
-      setmeme(response.data.meme);
-      console.log(meme);
+    // Instead of updating state here, trigger a fetch to update the state
+    fetchmemes();
+    // Clear the input fields or reset the form as needed
+    setText_caption("");
+    setImg(null);
     } catch (error) {
       console.error("Error fetching data:", error.message);
     }
@@ -49,6 +53,7 @@ const Add = () => {
     try {
       await axios.delete(`http://localhost:4000/api/meme/${MemeId}`);
       console.log("meme deleted successfully");
+      setmemes(memes.filter((meme) => meme.id !== MemeId));
     } catch (error) {
       console.error("Error deleting meme:", error);
     }
@@ -67,10 +72,12 @@ const Add = () => {
     }
   };
 
+  
   useEffect(() => {
     fetchmemes();
   }, []);
   console.log("meme", memes);
+
   return (
     <>
       <div className="meme">
@@ -108,6 +115,7 @@ const Add = () => {
                 <p>{meme.text_caption}</p>
 <div className="buttons">
                <button className="link-button"><Link to={`/edit/${meme.id}`}>Edit</Link></button>
+     
 
                 <button onClick={() => handleDelete(meme.id)}>Delete</button>
                 </div>
@@ -116,6 +124,7 @@ const Add = () => {
           </div>
         </div>
       </div>
+    
     </>
   );
 };
