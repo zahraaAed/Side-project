@@ -46,6 +46,7 @@ export async function signInUser(req, res) {
       if (!user) {
           return res.status(404).json('Incorrect username and password combination');
       }
+console.log(password)
 
       const passwordValid = await bcrypt.compare(password, user.password);
       console.log("login from front get password")

@@ -50,6 +50,9 @@ export const getMemeById = async (req, res) => {
 export const deleteMeme = async (req,res) =>{
     const {MemeId}= req.params;
     try{
+      if (req.user.role !== 'admin') {
+        return res.status(403).json({ error: 'Permission denied' });
+      }
         const DeleteMeme = await Meme.destroy({where:{id:MemeId}});
         if(!DeleteMeme){
             return res.status(404).json({ message: "Meme not deleted" });
@@ -71,6 +74,9 @@ export const addMeme = async (req, res) => {
    
     const { text_caption } = req.body; 
     try {
+      if (req.user.role !== 'admin') {
+        return res.status(403).json({ error: 'Permission denied' });
+      }
     
         const createdMeme = await Meme.create({ text_caption, img: image });
         console.log(createdMeme);
@@ -105,8 +111,11 @@ export const addMeme = async (req, res) => {
 export const updateMeme = async (req, res) => {
     const { MemeId } = req.params;
     const img = req.file?.path;
-
+    console.log("get front to start updating")
     try {
+      if (req.user.role !== 'admin') {
+        return res.status(403).json({ error: 'Permission denied' });
+      }
         if (req.body) {
             const updatedMeme = await Meme.update({ ...req.body, img }, { where: { id: MemeId } });
             return res.status(200).json({ message: 'Meme updated successfully!', Meme: updatedMeme });
